@@ -169,8 +169,8 @@ export default function Home() {
         <motion.div style={{ y: skyY }} className="absolute inset-0 z-0"><SkyBackground /></motion.div>
         <motion.div style={{ y: mountainsY }} className="absolute inset-0 z-10"><MountainSilhouette /></motion.div>
         <motion.div style={{ y: flagY }} className="absolute inset-0 z-20 opacity-80"><WavingFlag /></motion.div>
-       <motion.div style={{ y: silhouetteY }} className="absolute inset-0 z-30 flex justify-center items-end "><img src={"https://jadwal-pasusbra.vercel.app/paskibra.png"} className='w-150 h-150  md:h-250 md:w-250'/></motion.div>
-       
+        <motion.div style={{ y: silhouetteY }} className="absolute inset-0 z-30 flex justify-center items-end "><img src={"https://jadwal-pasusbra.vercel.app/paskibra.png"} className='w-150 h-150  md:h-250 md:w-250'/></motion.div>
+               
         <motion.div 
           style={{ opacity: textOpacity, y: textY }}
           className="relative z-50 flex flex-col items-center justify-center h-full text-center px-4"
@@ -231,16 +231,16 @@ export default function Home() {
             </div>
           </motion.section>
 
-          {/* Bagian Jadwal Latihan dengan Tombol Unduh */}
-          <motion.section {...fadeIn()}>
-            <div className="flex justify-between items-center mb-6">
+          {/* PERBAIKAN: Mengganti motion.section menjadi section biasa untuk stabilitas */}
+          <section>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white border-l-4 border-red-500 pl-4">
                 Detail Jadwal Latihan
               </h2>
               <button
                 onClick={handleDownloadPdf}
                 disabled={isGeneratingPdf}
-                className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed w-full sm:w-auto"
               >
                 {isGeneratingPdf ? (
                   <>
@@ -255,17 +255,15 @@ export default function Home() {
                 )}
               </button>
             </div>
-            {/* Kontainer ini yang akan diubah menjadi PDF */}
-            <div ref={scheduleRef} style={{ backgroundColor: '#111827', padding: '24px', borderRadius: '0.5rem' }}>
+            <div ref={scheduleRef} style={{ backgroundColor: '#111827', padding: '10px', borderRadius: '0.5rem' }}>
                 <div
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
                   {scheduleData.map((data, idx) => (
-                    // PERBAIKAN: Menggunakan inline-style untuk warna agar kompatibel dengan html2canvas
                     <div
                       key={idx}
                       style={{
-                        background: 'linear-gradient(to bottom right, #1f2937, #1f2937)', // gray-800 to gray-900
+                        background: 'linear-gradient(to bottom right, #1f2937, #1f2937)',
                         border: '1px solid rgba(255, 255, 255, 0.2)',
                         padding: '24px',
                         borderRadius: '1rem',
@@ -277,13 +275,10 @@ export default function Home() {
                       }}
                     >
                       <div style={{ flexGrow: 1 }}>
-                        <div style={{ marginBottom: '1.5rem',display: 'flex', alignItems: 'center', justifyContent: 'space-between' ,justifyItems: 'center'}}>
-                          
-                          <h3 style={{ color: '#FFF', fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
-                            <Calendar className="mr-3 h-5 w-5" />
-                            {data.date}
-                          </h3>
-                        </div>
+                        <h3 style={{ color: '#FFF', fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', display: 'flex', alignItems: 'center' }}>
+                          <Calendar className="mr-3 h-5 w-5" />
+                          {data.date}
+                        </h3>
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                           {data.activities.map((a, i) => (
                             <li key={i} style={{ display: 'flex', alignItems: 'flex-start' }}>
@@ -301,7 +296,7 @@ export default function Home() {
                   ))}
                 </div>
             </div>
-          </motion.section>
+          </section>
 
           <footer className="text-center text-sm text-white/60 mt-20 sm:mt-24 pt-8 border-t border-white/20">
             <p>🇮🇩 Dibuat dengan semangat untuk PASUSBRA SMAN 2 Pasaman | © {new Date().getFullYear()}</p>
