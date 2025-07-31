@@ -169,7 +169,7 @@ export default function Home() {
         <motion.div style={{ y: skyY }} className="absolute inset-0 z-0"><SkyBackground /></motion.div>
         <motion.div style={{ y: mountainsY }} className="absolute inset-0 z-10"><MountainSilhouette /></motion.div>
         <motion.div style={{ y: flagY }} className="absolute inset-0 z-20 opacity-80"><WavingFlag /></motion.div>
-       <motion.div style={{ y: silhouetteY }} className="absolute inset-0 z-30 flex justify-center items-end "><img src={"http://localhost:3000/paskibra.png"} className='w-150 h-150  md:h-250 md:w-250'/></motion.div>
+       <motion.div style={{ y: silhouetteY }} className="absolute inset-0 z-30 flex justify-center items-end "><img src={"https://jadwal-pasusbra.vercel.app/paskibra.png"} className='w-150 h-150  md:h-250 md:w-250'/></motion.div>
        
         <motion.div 
           style={{ opacity: textOpacity, y: textY }}
